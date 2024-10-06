@@ -6,6 +6,8 @@ app = Flask(__name__)
 with open('characters.json', 'r') as file:
     characters = json.load(file)
 
+def find_character_by_id(char_id):
+    return next((char for char in characters if char["id"] == char_id), None)
 
 #Fetch all characters (with Pagination) - 10 Points
 @app.route('/characters', methods=['GET'])
