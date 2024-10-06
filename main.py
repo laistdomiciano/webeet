@@ -12,7 +12,13 @@ def find_character_by_id(char_id):
 #Fetch all characters (with Pagination) - 10 Points
 @app.route('/characters', methods=['GET'])
 def get_characters():
-    pass
+    limit = int(request.args.get('limit', 20))
+    skip = int(request.args.get('skip', 0))
+
+    filtered_characters = characters
+
+    paginated_characters = filtered_characters[skip:skip + limit]
+    return jsonify(paginated_characters)
 
 
 #Feature 2: Fetch a specific character by ID - 5 Points
