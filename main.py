@@ -7,7 +7,10 @@ with open('characters.json', 'r') as file:
     characters = json.load(file)
 
 def find_character_by_id(char_id):
-    return next((char for char in characters if char["id"] == char_id), None)
+    for char in characters:
+        if char["id"] == char_id:
+            return char
+    return None
 
 #Fetch all characters (with Pagination) - 10 Points
 @app.route('/characters', methods=['GET'])
@@ -24,7 +27,10 @@ def get_characters():
 #Feature 2: Fetch a specific character by ID - 5 Points
 @app.route('/characters/<int:id>', methods=['GET'])
 def get_character_by_id(id):
-    pass
+    character = get_character_by_id(char_id)
+    if not character:
+        return abort(404, description="Character not found")
+    return jsonify(character)
 
 #Feature 3: Fetch a fIltered character list - 10 Points
 @app.route('/characters/filter', methods=['GET'])
@@ -55,3 +61,5 @@ def edit_character(id):
 def delete_character(id):
     pass
 
+if __name__ == '__main__':
+    app.run(debug=True)
