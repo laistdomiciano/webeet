@@ -32,6 +32,7 @@ def get_character_by_id(id):
         return abort(404, description="Character not found")
     return jsonify(character)
 
+
 #Feature 3: Fetch a fIltered character list - 10 Points
 @app.route('/characters/filter', methods=['GET'])
 def filter_characters():
