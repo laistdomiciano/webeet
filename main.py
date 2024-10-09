@@ -37,7 +37,9 @@ def get_character_by_id(id):
 # Feature 3: Fetch a fIltered character list - 10 Points
 @app.route('/characters/filter', methods=['GET'])
 def filter_characters():
-    pass
+    filters = {key: value.lower() for key, value in request.args.items()}
+    filtered = [char for char in characters if all(str(char.get(k, "")).lower() == v for k, v in filters.items())]
+    return jsonify(filtered)
 
 
 # Feature 4: Fetch a sorted character list - 10 Points
