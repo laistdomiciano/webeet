@@ -45,7 +45,12 @@ def filter_characters():
 # Feature 4: Fetch a sorted character list - 10 Points
 @app.route('/characters/sorted', methods=['GET'])
 def sorted_characters():
-    pass
+    sort_field = request.args.get('sort_field', 'name')
+    sort_order = request.args.get('order', 'asc')
+    sorted_characters = sorted(characters, key=lambda x: x.get(sort_field, ''))
+    if sort_order == 'desc':
+        sorted_characters = sorted_characters[::-1]
+    return jsonify(sorted_characters)
 
 
 # Feature 5: Add a new character to the list - 25 points
