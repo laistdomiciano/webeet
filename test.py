@@ -34,3 +34,20 @@ def test_sorted_characters():
     names = [character['name'] for character in data]
     assert names == sorted(names)
 
+
+def test_edit_character():
+    updated_character = {
+        "name": "Updated Character",
+        "house": "Updated House"
+    }
+    response = requests.patch(f"{BASE_URL}/characters/1", json=updated_character)
+    assert response.status_code == 200
+    assert response.json()['house'] == updated_character['house']
+
+
+def test_delete_character():
+    response = requests.delete(f"{BASE_URL}/characters/1")
+    assert response.status_code == 204
+    # Verify that the character is actually deleted
+    response = requests.get(f"{BASE_URL}/characters/1")
+    assert response.status_code == 404
