@@ -56,13 +56,23 @@ def sorted_characters():
 # Feature 5: Add a new character to the list - 25 points
 @app.route('/characters', methods=['POST'])
 def add_character():
-    pass
+    new_char = request.json
+    if not new_char or not all(key in new_char for key in ["id", "name", "house", "role", "age"]):
+        return abort(400, description="Missing required fields")
+    characters.append(new_char)
+    return jsonify(new_char), 201
 
 
 # Feature 6: Edit a character - 30 points
 @app.route('/characters/<int:id>', methods=['PATCH'])
 def edit_character(id):
-    pass
+    character = get_character_by_id(char_id)
+    if not character:
+        return abort(404, description="Character not found")
+
+    data = request.json
+    character.update(data)
+    return jsonify(character)
 
 
 # Feature 7: Delete a character - 10 points
