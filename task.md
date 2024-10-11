@@ -1,9 +1,6 @@
-# Backend Home Assignment
+# webeet
 
-<aside>
-ℹ️ Thank you for taking the time to tackle this challenge. We look forward to reviewing your submission!
-
-</aside>
+## Backend Home Assignment
 
 ### **Objective**
 
@@ -46,8 +43,8 @@ Make sure to use the write HTTP functions (GET, POST, PATCH, DELETE) for each on
 - **Feature 5: Add a new character to the list - 25 points**
     
     The server should ensure that all the relevant fields are not empty, and have information as expected (strings for example). Because we are not using a persistant data, the new character should saved in the list (on RAM).
-    
-- **Feature 6: Edit a character - 30 points**
+
+  - **Feature 6: Edit a character - 30 points**
     
     Using the correct HTTP function, a user should be able to change any of the character’s fields. Not only the ones they created. They should use the ID of the character to change it.
     
@@ -74,8 +71,8 @@ Make sure to use the write HTTP functions (GET, POST, PATCH, DELETE) for each on
         - Requesting a character by an `id` that doesn't exist.
         - If the next “page” (using skip and limit) does not exist.
         - If we tried to filter by a non-existent attribute (for example `height` ).
-
-### **Bonus Points (Optional)**
+     
+  ### **Bonus Points (Optional)**
 
 - **Authentication & Authorization:**
     - Create an endpoint (e.g., `/login`) that accepts a username and password.
@@ -89,7 +86,8 @@ Make sure to use the write HTTP functions (GET, POST, PATCH, DELETE) for each on
 - **Testing**:
     - Write unit tests for the API endpoints using a testing framework like `unittest` or `pytest`.
     - Cover various edge cases, such as invalid data, missing fields, and unauthorized access.
-- **Additional Features**:
+ 
+  - **Additional Features**:
     - Add any additional features you think would improve the functionality or user experience of the API.
 
 ### **Deliverables**
@@ -101,3 +99,35 @@ Make sure to use the write HTTP functions (GET, POST, PATCH, DELETE) for each on
     - Provide a list of all API endpoints, explaining what each one does, along with an example of how to use them.
 - **Postman Collection**:
     - Provide a Postman collection with sample requests for each API endpoint. This will allow easy testing of the API.
+ 
+    - 
+Evaluation Criteria
+Fail (<65)
+Basic (65-84)
+Good (85-100)
+Great (>100)
+Code Quality
+Poorly organized, lacks comments, difficult to understand
+Basic organization, minimal comments
+Well-organized, adequately commented
+Exceptionally clear, well-structured, with excellent comments and code readability
+Functionality
+Fails to meet core requirements
+Meets core requirements with some issues
+Fully meets core requirements with minor issues
+Exceeds expectations, handles all core requirements smoothly without any issues
+Error Handling
+Little to no error handling
+Basic error handling, some edge cases missed
+Comprehensive error handling
+Thorough and thoughtful error handling, covers all possible edge cases
+Problem-Solving
+Lacks effective solutions to challenges
+Addresses challenges with basic solutions
+Effective problem-solving with well-considered solutions
+Innovative solutions, anticipates challenges and handles them proactively
+Bonus Features
+—
+—
+—
+Implements multiple bonus features with high quality and enhances overall functionality
