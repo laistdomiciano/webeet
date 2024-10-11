@@ -42,8 +42,17 @@ def get_character_by_id(id):
 @app.route('/characters/filter', methods=['GET'])
 def filter_characters():
     filters = {key: value.lower() for key, value in request.args.items()}
-    filtered = [char for char in characters if all(str(char.get(k, "")).lower() == v for k, v in filters.items())]
-    return jsonify(filtered)
+    age_more_than = filters.pop('age_more_than', None)
+
+    filtered_characters = characters
+
+    if age_more_than:
+        filtered_characters = [char for char in filtered_characters if int(char.get('age', 0)) > int(age_more_than)]
+
+    for k, v in filters.items():
+        filtered_characters = [char for char in filtered_characters if str(char.get(k, "")).lower() == v]
+
+    return jsonify(filtered_characters)
 
 
 # Feature 4: Fetch a sorted character list - 10 Points
@@ -51,9 +60,12 @@ def filter_characters():
 def sorted_characters():
     sort_field = request.args.get('sort_field', 'name')
     sort_order = request.args.get('order', 'asc')
-    sorted_characters = sorted(characters, key=lambda x: x.get(sort_field, ''))
+
+    sorted_characters = sorted(characters, key=lambda x: x.get(sort_field, '').lower())
+
     if sort_order == 'desc':
         sorted_characters = sorted_characters[::-1]
+
     return jsonify(sorted_characters)
 
 
@@ -63,6 +75,7 @@ def add_character():
     new_char = request.json
     if not new_char or not all(key in new_char for key in ["id", "name", "house", "role", "age"]):
         return abort(400, description="Missing required fields")
+
     characters.append(new_char)
     return jsonify(new_char), 201
 
@@ -70,7 +83,7 @@ def add_character():
 # Feature 6: Edit a character - 30 points
 @app.route('/characters/<int:id>', methods=['PATCH'])
 def edit_character(id):
-    character = get_character_by_id(char_id)
+    character = find_character_by_id(id)
     if not character:
         return abort(404, description="Character not found")
 
@@ -80,9 +93,9 @@ def edit_character(id):
 
 
 # Feature 7: Delete a character - 10 points
-@app.route('/characters/<int:char_id>', methods=['DELETE'])
-def delete_character(char_id):
-    character = get_character_by_id(char_id)
+@app.route('/characters/<int:id>', methods=['DELETE'])
+def delete_character(id):
+    character = get_character_by_id(id)
     if not character:
         return abort(400, description="Character not found")
 
