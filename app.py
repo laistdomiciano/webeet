@@ -2,11 +2,21 @@ from flask import Flask, jsonify, request, abort
 import json
 from flask_cors import CORS
 
+
 app = Flask(__name__)
 CORS(app, resources={r"/*": {"origins": "*"}})
 
-with open('characters.json', 'r') as file:
-    characters = json.load(file)
+# Load characters from the JSON file
+def load_characters():
+    with open('characters.json', 'r') as file:
+        return json.load(file)
+
+# Save characters to the JSON file
+def save_characters():
+    with open('characters.json', 'w') as file:
+        json.dump(characters, file, indent=4)
+
+characters = load_characters()
 
 
 def find_character_by_id(char_id):
@@ -81,6 +91,7 @@ def add_character():
         return abort(400, description="Missing required fields")
 
     characters.append(new_char)
+    save_characters()
     return jsonify(new_char), 201
 
 
@@ -93,6 +104,7 @@ def edit_character(id):
 
     data = request.json
     character.update(data)
+    save_characters()
     return jsonify(character)
 
 
@@ -104,6 +116,7 @@ def delete_character(id):
         return abort(404, description="Character not found")
 
     characters.remove(character)
+    save_characters()
     return '', 200
 
 
