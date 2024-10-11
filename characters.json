@@ -598,6 +598,17 @@
         "age": 70,
         "death": 7,
         "strength": "Cunning"
+    },
+    {
+        "id": 51,
+        "name": "Jon Fire",
+        "house": "Stark",
+        "animal": "Direwolf",
+        "symbol": "Wolf",
+        "nickname": "King in the North",
+        "role": "King",
+        "age": 25,
+        "death": null,
+        "strength": "Physically strong"
     }
 ]
-
