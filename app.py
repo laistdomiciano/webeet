@@ -2,9 +2,8 @@ from flask import Flask, jsonify, request, abort
 import json
 from flask_cors import CORS
 
-
 app = Flask(__name__)
-CORS(app)
+CORS(app, resources={r"/*": {"origins": "*"}})
 
 with open('characters.json', 'r') as file:
     characters = json.load(file)
@@ -47,7 +46,12 @@ def filter_characters():
     filtered_characters = characters
 
     if age_more_than:
-        filtered_characters = [char for char in filtered_characters if int(char.get('age', 0)) > int(age_more_than)]
+        try:
+            age_threshold = int(age_more_than)
+            filtered_characters = [char for char in filtered_characters if int(char.get('age', 0)) > age_threshold]
+        except ValueError:
+            return jsonify(
+                {"error": "Invalid age filter"}), 400
 
     for k, v in filters.items():
         filtered_characters = [char for char in filtered_characters if str(char.get(k, "")).lower() == v]
@@ -73,7 +77,7 @@ def sorted_characters():
 @app.route('/characters', methods=['POST'])
 def add_character():
     new_char = request.json
-    if not new_char or not all(key in new_char for key in ["id", "name", "house", "role", "age"]):
+    if not new_char or not all(key in new_char for key in ["id", "name", "house", "role", "age", "death", "strength"]):
         return abort(400, description="Missing required fields")
 
     characters.append(new_char)
@@ -97,7 +101,7 @@ def edit_character(id):
 def delete_character(id):
     character = get_character_by_id(id)
     if not character:
-        return abort(400, description="Character not found")
+        return abort(404, description="Character not found")
 
     characters.remove(character)
     return '', 200
