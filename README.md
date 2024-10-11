@@ -29,25 +29,42 @@ This is a Flask-based API for managing a collection of characters. It provides e
 
 2. Install the required packages:
 
-pip install -r requirements.txt
+pip3 install -r requirements.txt
 
 3. 	Run the application:
 
-python app.py
+python3 app.py
 
 API Endpoints
 
 	•	GET /characters: Fetch all characters with optional pagination.
+       •	Query parameters:
+          •	limit: The number of characters to return (default: 20).
+          •	skip: The number of characters to skip from the start (default: 0).
 	•	GET /characters/<id>: Fetch a character by ID.
 	•	GET /characters/filter: Fetch filtered characters based on query parameters.
+       •	Query parameters (any of the following):
+          •	house: Filter characters by house.
+          •	role: Filter characters by role.
+          •	age_more_than: Return characters whose age is greater than the specified value.
 	•	GET /characters/sorted: Fetch sorted characters based on query parameters.
+       •	Query parameters:
+          •	sort_field: Field to sort by (default: name).
+          •	order: Sort order (asc for ascending or desc for descending, default: asc).
 	•	POST /characters: Add a new character.
+          •	Body: JSON object containing the following fields:
+          •	id, name, house, role, age, death, strength (all required).
 	•	PATCH /characters/<id>: Edit an existing character by ID.
-	•	DELETE /characters/<id>: Delete a character by ID.
+          •	Body: JSON object with the fields to update.
+          •	DELETE /characters/<id>: Delete a character by ID.
 
 Running Tests
 
 pytest test_app.py
+
+License
+
+This project is licensed under the MIT License.
 
 ### Instructions
 

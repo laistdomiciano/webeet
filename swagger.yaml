@@ -1,0 +1,170 @@
+openapi: 3.0.0
+info:
+  title: Character API
+  description: An API to manage characters with CRUD operations.
+  version: 1.0.0
+servers:
+  - url: http://127.0.0.1:5000
+paths:
+  /characters:
+    get:
+      summary: Get all characters with pagination
+      parameters:
+        - in: query
+          name: limit
+          schema:
+            type: integer
+          description: Number of characters to return (default is 20)
+        - in: query
+          name: skip
+          schema:
+            type: integer
+          description: Number of characters to skip (default is 0)
+      responses:
+        '200':
+          description: List of characters
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Character'
+    post:
+      summary: Add a new character
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Character'
+      responses:
+        '201':
+          description: Character added
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Character'
+  /characters/{id}:
+    get:
+      summary: Get character by ID
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Character details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Character'
+        '404':
+          description: Character not found
+    patch:
+      summary: Edit character by ID
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Character'
+      responses:
+        '200':
+          description: Updated character details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Character'
+        '404':
+          description: Character not found
+    delete:
+      summary: Delete character by ID
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Character successfully deleted
+        '404':
+          description: Character not found
+  /characters/filter:
+    get:
+      summary: Filter characters based on query parameters
+      parameters:
+        - in: query
+          name: house
+          schema:
+            type: string
+        - in: query
+          name: role
+          schema:
+            type: string
+        - in: query
+          name: age_more_than
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Filtered character list
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Character'
+  /characters/sorted:
+    get:
+      summary: Get sorted characters
+      parameters:
+        - in: query
+          name: sort_field
+          schema:
+            type: string
+            default: name
+        - in: query
+          name: order
+          schema:
+            type: string
+            enum: [asc, desc]
+            default: asc
+      responses:
+        '200':
+          description: Sorted character list
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Character'
+
+components:
+  schemas:
+    Character:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        house:
+          type: string
+        role:
+          type: string
+        age:
+          type: integer
+        death:
+          type: string
+          nullable: true
+        strength:
+          type: string

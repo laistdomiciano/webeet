@@ -802,5 +802,29 @@
         "age": 30,
         "death": null,
         "strength": "Test Strength"
+    },
+    {
+        "id": 100,
+        "name": "Test Character",
+        "house": "Test House",
+        "animal": "Test Animal",
+        "symbol": "Test Symbol",
+        "nickname": "Test Nickname",
+        "role": "Test Role",
+        "age": 30,
+        "death": null,
+        "strength": "Test Strength"
+    },
+    {
+        "id": 100,
+        "name": "Test Character",
+        "house": "Test House",
+        "animal": "Test Animal",
+        "symbol": "Test Symbol",
+        "nickname": "Test Nickname",
+        "role": "Test Role",
+        "age": 30,
+        "death": null,
+        "strength": "Test Strength"
     }
 ]
