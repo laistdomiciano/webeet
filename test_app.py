@@ -3,6 +3,7 @@ import requests
 
 BASE_URL = "http://127.0.0.1:5000"
 
+
 def test_get_characters():
     response = requests.get(f"{BASE_URL}/characters?limit=20")
     assert response.status_code == 200
