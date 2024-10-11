@@ -29,3 +29,30 @@ This is a Flask-based API for managing a collection of characters. It provides e
 
 2. Install the required packages:
 
+pip install -r requirements.txt
+
+3. 	Run the application:
+
+python app.py
+
+API Endpoints
+
+	•	GET /characters: Fetch all characters with optional pagination.
+	•	GET /characters/<id>: Fetch a character by ID.
+	•	GET /characters/filter: Fetch filtered characters based on query parameters.
+	•	GET /characters/sorted: Fetch sorted characters based on query parameters.
+	•	POST /characters: Add a new character.
+	•	PATCH /characters/<id>: Edit an existing character by ID.
+	•	DELETE /characters/<id>: Delete a character by ID.
+
+Running Tests
+
+pytest test_app.py
+
+### Instructions
+
+1. **`README.md`**: This file contains all the necessary information to understand, set up, and use your API.
+2. **`requirements.txt`**: This file specifies the dependencies needed to run your application and tests.
+
+Make sure to replace the placeholder in the README (like the GitHub link) with actual information. Let me know if you need any more modifications or additional information!
+
