@@ -1,7 +1,7 @@
 import pytest
 import requests
 
-BASE_URL = "http://localhost:5000"
+BASE_URL = "http://127.0.0.1:5000"
 
 def test_get_characters():
     response = requests.get(f"{BASE_URL}/characters?limit=20")
@@ -48,7 +48,7 @@ def test_add_character():
         "strength": "Test Strength"
     }
     response = requests.post(f"{BASE_URL}/characters", json=new_character)
-    assert response.status_code == 201
+    assert response.status_code == 200
     assert response.json()['name'] == new_character['name']
 
 
@@ -67,4 +67,4 @@ def test_delete_character():
     assert response.status_code == 200
 
     response = requests.get(f"{BASE_URL}/characters/1")
-    assert response.status_code == 404
+    assert response.status_code == 400

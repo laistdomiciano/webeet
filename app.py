@@ -1,7 +1,10 @@
 from flask import Flask, jsonify, request, abort
 import json
+from flask_cors import CORS
+
 
 app = Flask(__name__)
+CORS(app)
 
 with open('characters.json', 'r') as file:
     characters = json.load(file)
@@ -27,6 +30,7 @@ def get_characters():
 
 
 # Feature 2: Fetch a specific character by ID - 5 Points
+@app.route('/characters/<int:id>', methods=['GET'])
 def get_character_by_id(id):
     character = find_character_by_id(id)
     if not character:
@@ -84,7 +88,6 @@ def delete_character(char_id):
 
     characters.remove(character)
     return '', 200
-
 
 
 if __name__ == '__main__':
