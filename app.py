@@ -111,7 +111,7 @@ def edit_character(id):
 # Feature 7: Delete a character - 10 points
 @app.route('/characters/<int:id>', methods=['DELETE'])
 def delete_character(id):
-    character = get_character_by_id(id)
+    character = find_character_by_id(id)
     if not character:
         return abort(404, description="Character not found")
 
