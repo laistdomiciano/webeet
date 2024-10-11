@@ -64,8 +64,23 @@ def test_edit_character():
 
 
 def test_delete_character():
-    response = requests.delete(f"{BASE_URL}/characters/1")
+    new_character = {
+        "id": 101,
+        "name": "Delete Me",
+        "house": "Test House",
+        "animal": "Test Animal",
+        "symbol": "Test Symbol",
+        "nickname": "Test Nickname",
+        "role": "Test Role",
+        "age": 30,
+        "death": None,
+        "strength": "Test Strength"
+    }
+    response = requests.post(f"{BASE_URL}/characters", json=new_character)
+    assert response.status_code == 201
+
+    response = requests.delete(f"{BASE_URL}/characters/101")
     assert response.status_code == 200
 
-    response = requests.get(f"{BASE_URL}/characters/1")
-    assert response.status_code == 404
+    response = requests.get(f"{BASE_URL}/characters/101")
+    assert response.status_code == 404 

@@ -58,13 +58,18 @@ def filter_characters():
     if age_more_than:
         try:
             age_threshold = int(age_more_than)
-            filtered_characters = [char for char in filtered_characters if int(char.get('age', 0)) > age_threshold]
+            filtered_characters = [
+                char for char in filtered_characters
+                if 'age' in char and char['age'] and int(char['age']) > age_threshold
+            ]
         except ValueError:
-            return jsonify(
-                {"error": "Invalid age filter"}), 400
+            return jsonify({"error": "Invalid age filter"}), 400
 
     for k, v in filters.items():
-        filtered_characters = [char for char in filtered_characters if str(char.get(k, "")).lower() == v]
+        filtered_characters = [
+            char for char in filtered_characters
+            if k in char and str(char[k]).lower() == v
+        ]
 
     return jsonify(filtered_characters)
 
@@ -117,7 +122,7 @@ def delete_character(id):
 
     characters.remove(character)
     save_characters()
-    return '', 200
+    return 'Character Deleted with success', 200
 
 
 if __name__ == '__main__':
