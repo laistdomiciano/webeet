@@ -874,5 +874,29 @@
         "age": 30,
         "death": null,
         "strength": "Test Strength"
+    },
+    {
+        "id": 54,
+        "name": "Jon Fire",
+        "house": "Stark",
+        "animal": "Direwolf",
+        "symbol": "Wolf",
+        "nickname": "King in the North",
+        "role": "King",
+        "age": 25,
+        "death": null,
+        "strength": "Physically strong"
+    },
+    {
+        "id": 100,
+        "name": "Test Character",
+        "house": "Test House",
+        "animal": "Test Animal",
+        "symbol": "Test Symbol",
+        "nickname": "Test Nickname",
+        "role": "Test Role",
+        "age": 30,
+        "death": " ",
+        "strength": "Test Strength"
     }
 ]

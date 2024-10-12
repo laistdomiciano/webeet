@@ -151,19 +151,25 @@ def add_character():
     """Add a new character to the list.
 
     Request Body:
-        JSON: Character data including id, name, house, role, age, death, strength.
+        JSON: Character data including id, name, house, role, age, death, strength, animal, symbol, nickname.
 
     Returns:
         JSON: The added character data or an error message for missing fields.
     """
     new_char = request.json
-    required_fields = ["id", "name", "house", "role", "age", "death", "strength"]
+    required_fields = ["id", "name", "house", "role", "age", "strength"]
 
     if not new_char or not all(field in new_char and new_char[field] is not None for field in required_fields):
         return jsonify({"error": "Missing required fields"}), 400
 
     if not isinstance(new_char['age'], int) or new_char['age'] < 0:
         return jsonify({"error": "Age must be a non-negative integer"}), 400
+
+    optional_fields = ["animal", "symbol", "nickname", "death"]
+
+    for field in optional_fields:
+        if field not in new_char:
+            new_char[field] = None
 
     characters.append(new_char)
     save_characters()
@@ -188,7 +194,13 @@ def edit_character(id):
         return abort(404, description="Character not found")
 
     data = request.json
-    character.update(data)
+    valid_fields = ["name", "house", "role", "age", "strength", "animal", "symbol", "nickname", "death"]
+
+    # Update only valid fields
+    for field in valid_fields:
+        if field in data:
+            character[field] = data[field]
+
     save_characters()
     return jsonify(character)
 
@@ -210,7 +222,7 @@ def delete_character(id):
 
     characters.remove(character)
     save_characters()
-    return 'Character Deleted with success', 200
+    return jsonify({"message": "Character deleted successfully"}), 200
 
 
 if __name__ == '__main__':
