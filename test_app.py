@@ -85,3 +85,33 @@ def test_delete_character():
 
     response = requests.get(f"{BASE_URL}/characters/101")
     assert response.status_code == 404 
+
+
+def test_get_characters_pagination():
+    response = requests.get(f"{BASE_URL}/characters?limit=5&skip=0")
+    assert response.status_code == 200
+    data = response.json()
+    assert len(data) <= 5
+
+
+def test_get_characters_no_limit():
+    response = requests.get(f"{BASE_URL}/characters")
+    assert response.status_code == 200
+    data = response.json()
+    assert isinstance(data, list)
+    assert len(data) <= 20
+
+
+def test_sort_characters_invalid_field():
+    response = requests.get(f"{BASE_URL}/characters/sorted?sort_field=invalid_field")
+    assert response.status_code == 400
+    assert "Invalid sort field" in response.json()['error']
+
+
+def test_add_character_validation():
+    new_character = {
+        "name": "Incomplete Character"
+    }
+    response = requests.post(f"{BASE_URL}/characters", json=new_character)
+    assert response.status_code == 400
+    assert "Missing required fields" in response.json()['error']
