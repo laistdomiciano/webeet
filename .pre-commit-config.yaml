@@ -1,0 +1,7 @@
+repos:
+  - repo: local
+    hooks:
+      - id: make-check
+        name: make-check
+        entry: ./scripts/make_check.sh
+        language: script
