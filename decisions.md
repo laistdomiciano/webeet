@@ -1,8 +1,8 @@
 
 # Additional Features:
-- requirements.txt
-- Swagger:
-- Added pre-commit confiuration
+- requirements.txt: makes it easy to replicate the same environment
+- Swagger: allows users to easily explore and test the API
+- Added pre-commit confiuration: prevent broken code of being commited
 
 
 # Further ideas for improvement (if I had more time):
