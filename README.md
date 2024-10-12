@@ -71,5 +71,4 @@ This project is licensed under the MIT License.
 1. **`README.md`**: This file contains all the necessary information to understand, set up, and use your API.
 2. **`requirements.txt`**: This file specifies the dependencies needed to run your application and tests.
 
-Make sure to replace the placeholder in the README (like the GitHub link) with actual information. Let me know if you need any more modifications or additional information!
 

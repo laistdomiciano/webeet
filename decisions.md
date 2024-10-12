@@ -8,10 +8,10 @@
 
 # Ideas for improvement (if I had more time):
 
-- Include more doc strings
 - Create a better database for the characters
   - Deploy database
-- Include more tests
+- Include more tests:
+  - 
 - Create a UI - work on the Frontend
 
 
@@ -50,6 +50,7 @@ PATCH /characters/<id>: Edit an existing character by ID.
 ## Feature 7: Delete a character - 10 points
 DELETE /characters/<id>: Delete a character by ID.
 
-
+## Debug=True
+Why? Because it is better for
 
 
