@@ -46,7 +46,7 @@ def test_add_character():
         "nickname": "Test Nickname",
         "role": "Test Role",
         "age": 30,
-        "death": None,
+        "death": " ",
         "strength": "Test Strength"
     }
     response = requests.post(f"{BASE_URL}/characters", json=new_character)
@@ -74,7 +74,7 @@ def test_delete_character():
         "nickname": "Test Nickname",
         "role": "Test Role",
         "age": 30,
-        "death": None,
+        "death": " ",
         "strength": "Test Strength"
     }
     response = requests.post(f"{BASE_URL}/characters", json=new_character)
