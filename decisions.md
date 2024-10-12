@@ -1,17 +1,16 @@
 
-# What I did beyond requested in the task:
+# Additional Features:
 
 - requirements.txt
+- Swagger:
 - Added Unit Testing on Git Commit
-- Swagger
 
 
-# Ideas for improvement (if I had more time):
+# Further ideas for improvement (if I had more time):
 
-- Create a better database for the characters
+- Authentication & Authorization - Bonus point in the assignment
+- Create a better database: SQLite, PostgreSQL
   - Deploy database
-- Include more tests:
-  - 
 - Create a UI - work on the Frontend
 
 
@@ -26,31 +25,25 @@ GET /characters: Fetch all characters with optional pagination.
 GET /characters/<id>: Fetch a character by ID.
 
 
-
 ## Feature 3: Fetch a fIltered character list - 10 Points
 GET /characters/filter: Fetch filtered characters based on query parameters.
-
 
 
 ## Feature 4: Fetch a sorted character list - 10 Points
 GET /characters/sorted: Fetch sorted characters based on query parameters.
 
 
-
 ## Feature 5: Add a new character to the list - 25 points
 POST /characters: Add a new character.
-
 
 
 ## Feature 6: Edit a character - 30 points
 PATCH /characters/<id>: Edit an existing character by ID.
 
 
-
 ## Feature 7: Delete a character - 10 points
 DELETE /characters/<id>: Delete a character by ID.
 
+
 ## Debug=True
-Why? Because it is better for
-
-
+Why? Used during development, because it is better for more detailed error messages.
