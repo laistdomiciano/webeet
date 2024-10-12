@@ -8,12 +8,12 @@ CORS(app, resources={r"/*": {"origins": "*"}})
 
 # Load characters from the JSON file
 def load_characters():
-    with open('characters.json', 'r') as file:
+    with open('data/characters.json', 'r') as file:
         return json.load(file)
 
 # Save characters to the JSON file
 def save_characters():
-    with open('characters.json', 'w') as file:
+    with open('data/characters.json', 'w') as file:
         json.dump(characters, file, indent=4)
 
 characters = load_characters()
